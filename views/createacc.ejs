@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Create an account</title>
-    <link href="createacc.css" rel="stylesheet">
+    <title>Create profile</title>
+    <link href="css/createacc.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-    <form>
+    <form action="/createacc" method="POST">
         <div class="formContainer">
-            <h1>アカウント作成</h1>
+            <h1>プロフィール作成</h1>
             <hr>
             <label for="name"><b>氏名</b></label>
-            <input type="text" placeholder="姓" name="氏名" required>
-            <input type="text" placeholder="名" name="氏名" required>
+            <input type="text" placeholder="姓" name="lastname" required>
+            <input type="text" placeholder="名" name="firstname" required>
 
 
             <label for="date-of-birth"><b>生年月日</b></label>
-            <input list="browsers" name="browser" id="browser" placeholder="年（西暦）">
+            <!--<input list="browsers" name="browser" id="year" placeholder="年（西暦）">
             <datalist id="browsers">
             <option value="1990">
             <option value="1991">
@@ -53,7 +53,7 @@
             </datalist>
             
 
-            <input list="browsers" name="browser" id="browser" placeholder="月">
+            <input list="browsers" name="month" id="browser" placeholder="月">
             <datalist id="browsers">
             <option value="1">
             <option value="2">
@@ -69,15 +69,51 @@
             <option value="12">                
             </datalist>
 
-            <input type="text" name="date-of-birth" placeholder="年（西暦）" required> 
-            <input type="text" name="date-of-birth" placeholder="月" required> 
-            <input type="text" name="date-of-birth" placeholder="日" required> 
+            <input list="browsers" name="day" id="browser" placeholder="日">
+            <datalist id="browsers">
+            <option value="1">
+            <option value="2">
+            <option value="3">
+            <option value="4">
+            <option value="5">
+            <option value="6">
+            <option value="7">
+            <option value="8">
+            <option value="9">
+            <option value="10">
+            <option value="11">
+            <option value="12">
+            <option value="13">
+            <option value="14">
+            <option value="15">
+            <option value="16">
+            <option value="17">
+            <option value="18">
+            <option value="19">
+            <option value="20">
+            <option value="21">
+            <option value="22">
+            <option value="23">
+            <option value="24">
+            <option value="25">
+            <option value="26">
+            <option value="27">
+            <option value="28">
+            <option value="29">
+            <option value="30">
+            <option value="31">
+            </datalist> -->
+
+            <input type="text" name="year" placeholder="年（西暦）" required> 
+            <input type="text" name="month" placeholder="月" required> 
+            <input type="text" name="day" placeholder="日" required> 
             
             <label for="university"><b>大学</b></label>
-            <input type="text" placeholder="大学名" name="repeatPassword"
+            <input type="text" placeholder="大学名" name="university"
             required>
+
      
-            <form>
+            <!-- <form>
                 <label for="university"><b>大学名</b></label>
                 <input list="browsers" name="browser" id="browser">
                 <datalist id="browsers">
@@ -87,12 +123,15 @@
                 <option value="Opera">
                 <option value="Safari">
                 </datalist>
-            </form>
+            </form> -->
            
+            <label for="university"><b>趣味</b></label>
+            <input type="text" placeholder="趣味" name="hobbies"
+            required>
            
             <div>
-            <button type="button" class="cancel">戻る</button>
-            <button type="submit" class="signup">アカウント作成</button>
+            <!-- <button type="button" class="cancel">戻る</button> -->
+            <button type="submit" class="signup">プロフィール作成</button>
             </div>
         </div>
     </form>

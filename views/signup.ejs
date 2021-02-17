@@ -6,17 +6,17 @@
 </head>
 <body>
     <div class="container">
-    <form>
+    <form action="/signup" method="POST">
         <div class="formContainer">
             <h1>新規登録</h1>
             <hr>
             <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" required>
+            <input type="text" placeholder="Enter Email" name="username" required>
             <label for="password"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>
-            <label for="repeatPassword"><b>Repeat Password</b></label>
+            <!-- <label for="repeatPassword"><b>Repeat Password</b></label>
             <input type="password" placeholder="Repeat Password" name="repeatPassword"
-            required>
+            required> -->
             <label>
             <input type="checkbox" checked="checked" name="remember" style="marginbottom: 15px"> パスワードを保存する
             </label>
@@ -24,7 +24,7 @@
             <p>アカウント作成をクリックすることで、<a href="#"
                 style="color:dodgerblue">UNI-COMI</a>の 一般利用規約 および プライバシーポリシー を理解し、同意頂いたものとします。 <p>
             <div>
-            <button type="button" class="cancel">戻る</button>
+            <!-- <button type="button" class="cancel">戻る</button> -->
             <button type="submit" class="signup">アカウント作成</button>
             </div>
         </div>
