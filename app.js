@@ -64,7 +64,14 @@ app.get("/signup", function(req,res){
     res.render("signup");
 });
 
-
+app.get("/my-profile", function(req,res){
+    
+    if(req.isAuthenticated()){
+        res.render("my-profile");
+    }else {
+        res.redirect("/");
+    }
+});
 
 app.get("/logout", function(req,res){
     req.logout();
@@ -118,8 +125,6 @@ app.post("/signup", function(req,res){
             });
         }
     });
-
-    
 });
 
 app.post("/createacc", function(req,res){
@@ -152,6 +157,8 @@ app.post("/createacc", function(req,res){
     });
     
 });
+
+
 
 
 app.listen(process.env.PORT || 3000, function() {
