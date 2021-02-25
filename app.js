@@ -102,9 +102,9 @@ app.get("/filtering", function(req,res){
     }
 })
 
-app.get("/editprofile", function(req,res){
+app.get("/edit-profile", function(req,res){
     if(req.isAuthenticated()){
-        res.render("editprofile");
+        res.render("edit-profile");
     }else {
         res.redirect("/");
     }

@@ -15,7 +15,7 @@
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
   <!-- Custom styles for this template -->
-  <link href="css/my-profile.css" rel="stylesheet">
+  <link href="css/edit-profile.css" rel="stylesheet">
 
 
 
@@ -62,18 +62,29 @@
       <div class="container-fluid">
         <div class="userprofileframe">
           
-          <button class="myButton"> <a style="text-decoration:none;color: inherit; "  href="edit-profile">プロフィールを編集</a></button>
-          <br>
-          <img class="profilepic" src="https://fineboys-online.jp/thegear/content/theme/media/kiyoharakaya_1.jpg"
-            alt="プロフィール画像">
-          <div class="profilecontent">
-            
-            <h1>Kaya Hanada</h1>
-            <p>大学名：This container has a top padding of 16 pixels (.pt-3).</p>
-            <p>学年：Try to remove the .pt-3 class to see the difference.</p>
-            <p>自己紹介：Try to remove the .pt-3 class to see the difference.</p>
-          </div>
+        <div class="changecontent">
+            <form action="">
+              <button class="myButton" type="submit" href="/my-profile" ><a style="text-decoration:none;color: inherit; "  href="my-profile">プロフィールを保存</a></button><br>
+              <label for="editProfileImage">プロフィール画像:</label>
+              <input type="file" id="editProfileImage" name="filename"><br>
+              
+              <label for="name-input">名前:</label>
+              <input id="name-input" name="name" type="text" size="15" value="Kaya Hanada"> <br>
+              <label for="uni-name-input">大学名:</label>
+              <input id="uni-name-input" name="university" type="text" size="20" value="This container has a top padding of 16 pixels (.pt-3)."> <br>
+              <label for="grade-input">学年:</label>
+              <select name="grade"　id="uni-name-input" > 
+                <option value="firstGrade">1年生</option>
+                <option value="secondGrade">2年生</option>
+                <option value="thirdGrade">3年生</option>
+                <option value="fourthGrade">4年生</option>
+              </select><br>
+              <label for="bio-input">自己紹介:</label>
+              <textarea id="bio-input" rows = "5" cols = "30" name = "bio" type="text" >Try to remove the .pt-3 class to see the difference.
+              </textarea><br>
+            </form>
           
+          </div>
           
 
 
@@ -105,13 +116,9 @@
         $("#wrapper").toggleClass("toggled");
       }
 
-      function openForm() {
-        document.getElementById("myForm").style.display = "block";
-      }
-
-      function closeForm() {
-        document.getElementById("myForm").style.display = "none";
-      }
+      $("#editProfileImage").click(function(e) {
+        $("#imageUpload").click();
+      });
 
 
     </script>
