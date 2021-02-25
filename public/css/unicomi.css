@@ -89,3 +89,102 @@
   -webkit-transform: rotate(45deg) translate(-8px, -8px);
   transform: rotate(45deg) translate(-8px, -8px);
 }
+
+.card{
+  width: 400px;
+  margin: 75px auto 0;
+  background-color: #fff;
+  box-shadow: 0 3px 30px rgba(0,0,0,.14);
+  color:#444;
+  text-align: center;
+  font-size: 16px;
+}
+.card .card-header{
+  position: relative;
+  height: 48px;
+}
+.card .card-header .profile-img{
+  width: 96px;
+  height: 96px;
+  border-radius: 1000px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border: 6px solid #fff;
+  box-shadow: 0 0 20px rgb(0,0,0,.2);
+}
+.card .card-body{
+  padding:10px 40px;
+}
+.card .card-body .full-name{
+  font-size: 23px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 10px,0,0;
+}
+
+
+.card .card-body .university{
+  font-weight: 500;
+  margin: 10px,0,0;
+}
+.card .card-body .grade{
+  line-height: 24px;
+}
+
+.card .card-footer{
+  display: table;
+  width: 100%;
+  border-top: 1px solid #e6e6e6;
+}
+.card .card-footer .col{
+  display: table-cell;
+  padding: 5px 10px;
+  font-size: 15px;
+}
+.card .card-footer .count{
+  font-size: 18px;
+  font-weight: 600;
+}
+.vr{
+  border-right: 1px solid #e6e6e6;
+}
+@media screen and (max-width 575px){
+  .card{
+    width: 96%;
+  }
+  .card .card-body{
+    padding: 10px 20px;
+  }
+  .card .card-footer .col{
+    padding: 0 10px;
+  }
+  .card .card-footer .count{
+    display: block;
+    margin-bottom: 5px;
+  }
+}
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #3dc21b;
+	background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+	background-color:#44c767;
+	border-radius:3px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
+	background-color:#5cbf2a;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+

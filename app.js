@@ -94,6 +94,23 @@ app.get("/createacc", function(req,res){
     }
 })
 
+app.get("/filtering", function(req,res){
+    if(req.isAuthenticated()){
+        res.render("filtering");
+    }else {
+        res.redirect("/");
+    }
+})
+
+app.get("/editprofile", function(req,res){
+    if(req.isAuthenticated()){
+        res.render("editprofile");
+    }else {
+        res.redirect("/");
+    }
+});
+
+
 app.post("/signin", function(req,res){
     const user = new User({
         username: req.body.username,
@@ -112,6 +129,7 @@ app.post("/signin", function(req,res){
     });
 
 });
+
 
 app.post("/signup", function(req,res){
 
