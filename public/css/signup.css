@@ -1,61 +1,61 @@
 body{
-    background-color:#FFFAF0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
- }
- * {box-sizing: border-box}
- input[type=text], input[type=password] {
-    width: 100%;
-    font-size: 28px;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    display: inline-block;
-    border: none;
-    background: #f1f1f1;
- }
- label{
-    font-size: 15px;
- }
- input[type=text]:focus, input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
- }
- hr {
-    border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
- }
- button {
-    font-size: 18px;
-    font-weight: bold;
-    background-color: rgb(10, 119, 13);
-    color: white;
-    padding: 14px 20px;
-    margin: 8px auto;
-    border: none;
-    cursor: pointer;
-    width: 50%;
-    opacity: 0.9;
-    display: block; 
+   background-color:#FFFAF0;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+* {box-sizing: border-box}
+/* input[type=text]{
+   width: 100%;
+   font-size: 28px;
+   padding: 15px;
+   margin: 5px 0 22px 0;
+   display: inline-block;
+   border: none;
+   background: #f1f1f1;
+} */
+label{
+   font-size: 15px;
+}
+/* input[type=text]:focus  {
+   background-color: #ddd;
+   outline: none;
+} */
+textarea{
+  background-color: #ddd;
+}
+
+hr {
+   border: 1px solid #313131;
+   margin-bottom: 25px;
+}
+button:hover {
+   opacity:1;
+}
+
+.formContainer {
+   padding: 16px;
+   
+}
+.formContainer p{
+   font-size: 20px;
+}
+.form-group{
+   margin: 15px auto;
+}
+.container{
+
+   width: 50%;
+   margin: 25px auto;
     
-    
- }
- button:hover {
-    opacity:1;
- }
- .cancel {
-    padding: 14px 20px;
-    background-color: #ff3d2f;
- }
- .formContainer {
-    padding: 16px;
- }
- .formContainer p{
-    font-size: 20px;
- }
- .container{
-    width: 50%;
-    margin: auto;
-     
- }
+}
+
+.submit-profile{
+  margin: 25px auto 15px;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 h1{
    font-size: 25px;
 }
