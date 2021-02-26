@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Signup page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link href="css/signup.css" rel="stylesheet">
 </head>
 <body>
@@ -10,23 +11,23 @@
         <div class="formContainer">
             <h1>新規登録</h1>
             <hr>
-            <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="username" required>
-            <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-            <!-- <label for="repeatPassword"><b>Repeat Password</b></label>
-            <input type="password" placeholder="Repeat Password" name="repeatPassword"
-            required> -->
-            <label>
-            <input type="checkbox" checked="checked" name="remember" style="marginbottom: 15px"> パスワードを保存する
-            </label>
-
-            <p>アカウント作成をクリックすることで、<a href="#"
-                style="color:dodgerblue">UNI-COMI</a>の 一般利用規約 および プライバシーポリシー を理解し、同意頂いたものとします。 <p>
-            <div>
-            <!-- <button type="button" class="cancel">戻る</button> -->
-            <button type="submit" class="signup">アカウント作成</button>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="username">
+                
             </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+            </div>
+            
+
+            <div class="submit-profile">
+                <button type="submit" class="btn btn-success">新規登録</button>
+            </div>
+            
+            <!-- <p>アカウント作成をクリックすることで、<a href="#"
+                style="color:dodgerblue">UNI-COMI</a>の 一般利用規約 および プライバシーポリシー を理解し、同意頂いたものとします。 <p> -->
         </div>
     </form>
     </div>
