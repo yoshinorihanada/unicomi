@@ -128,6 +128,14 @@ app.get("/edit-profile", function (req, res) {
     }
 });
 
+app.get("/user_profile", function (req, res) {
+    if (req.isAuthenticated()) {
+        res.render("user_profile");
+    } else {
+        res.redirect("/");
+    }
+});
+
 
 app.post("/signin", function (req, res) {
     const user = new User({

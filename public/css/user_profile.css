@@ -1,0 +1,150 @@
+/*!
+ * Start Bootstrap - Shop Homepage (https://startbootstrap.com/template/shop-homepage)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
+ */
+ body {
+    padding-top: 56px;
+    background-color:#FFFAF0;
+  }
+  .topbar {
+      background-color: #66CDAA;
+  }
+  .topname{
+      color: black;
+
+
+  }
+
+  #wrapper {
+    overflow-x: hidden;
+    
+ }
+
+
+
+
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+  
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+
+
+.userprofileframe{
+    text-align: center;
+    background-color:white;
+    margin: 16px auto;
+    width: 70%;
+    height: 90%;
+    
+    /* border-radius: 30px;
+    border: solid;
+    border-width: ;
+    border-color: black; */
+
+    -webkit-border-radius: 0 0 6px 6px;
+           -moz-border-radius: 0 0 6px 6px;
+                border-radius: 0 0 6px 6px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+.profilepic{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 30px auto;
+    
+}
+
+.profilecontent{
+  padding: 8px 15px;
+}
+
+.backbutton {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    margin-right: 80%;
+    margin-top: 10px;
+    border: solid 1px;
+    border-color: black;
+  }
+  
+  .backbutton:hover {
+    background-color:#66CDAA;
+    color: black;
+  }
+  
+  .previous {
+    background-color: #ddd;
+    color: black;
+  }
+
+  
+  .round {
+    border-radius: 50%;
+  }
+
+/* Style for edit profile  */
