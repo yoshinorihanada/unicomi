@@ -63,24 +63,25 @@
         <div class="userprofileframe">
           
         <div class="changecontent">
-            <form action="">
-              <button class="myButton" type="submit" href="/my-profile" ><a style="text-decoration:none;color: inherit; "  href="my-profile">プロフィールを保存</a></button><br>
+            <form action="/edit-profile" method="POST">
+              <button class="myButton" type="submit" ><a style="text-decoration:none;color: inherit; "  href="my-profile">プロフィールを保存</a></button><br>
               <label for="editProfileImage">プロフィール画像:</label>
               <input type="file" id="editProfileImage" name="filename"><br>
               
               <label for="name-input">名前:</label>
-              <input id="name-input" name="name" type="text" size="15" value="Kaya Hanada"> <br>
+              <input id="name-input" name="name" type="text" size="15" value="<%= name %> "> <br>
               <label for="uni-name-input">大学名:</label>
-              <input id="uni-name-input" name="university" type="text" size="20" value="This container has a top padding of 16 pixels (.pt-3)."> <br>
+              <input id="uni-name-input" name="university" type="text" size="20" value="<%= university %> "> <br>
               <label for="grade-input">学年:</label>
               <select name="grade"　id="uni-name-input" > 
-                <option value="firstGrade">1年生</option>
-                <option value="secondGrade">2年生</option>
-                <option value="thirdGrade">3年生</option>
-                <option value="fourthGrade">4年生</option>
+                <option value="1" <%= grade === "1" ? 'selected' : '' %> >1年生</option>
+                <option value="2" <%= grade === "2" ? 'selected' : '' %>>2年生</option>
+                <option value="3" <%= grade === "3" ? 'selected' : '' %>>3年生</option>
+                <option value="4" <%= grade === "4" ? 'selected' : '' %>>4年生</option>
               </select><br>
+              
               <label for="bio-input">自己紹介:</label>
-              <textarea id="bio-input" rows = "5" cols = "30" name = "bio" type="text" >Try to remove the .pt-3 class to see the difference.
+              <textarea name="bio" id="bio-input" rows = "5" cols = "30" type="text" ><%= bio %> 
               </textarea><br>
             </form>
           
@@ -120,6 +121,9 @@
         $("#imageUpload").click();
       });
 
+      
+
+      
 
     </script>
 

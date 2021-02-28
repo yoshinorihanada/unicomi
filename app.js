@@ -122,7 +122,17 @@ app.get("/filtering", function (req, res) {
 
 app.get("/edit-profile", function (req, res) {
     if (req.isAuthenticated()) {
-        res.render("edit-profile");
+        User.findById(req.user.id, function (err, foundUser) {
+            if (err) {
+                console.log(err);
+            } else {
+                if (foundUser) {
+                    
+                    res.render("edit-profile", {name: foundUser.name, grade: foundUser.grade, university: foundUser.university, bio: foundUser.bio});
+                }
+            }
+        });
+        
     } else {
         res.redirect("/");
     }
@@ -171,7 +181,7 @@ app.post("/signup", function (req, res) {
     });
 });
 
-app.post("/createacc", function (req, res,) {
+app.post("/createacc", function (req, res) {
 
     // upload.single('avator')(req, res, function (error) {
     //     if (error) {
@@ -210,6 +220,29 @@ app.post("/createacc", function (req, res,) {
     });
 
 
+});
+
+app.post("/edit-profile", function(req,res){
+    console.log(req.body)
+    const name = req.body.name;
+    const grade = req.body.grade;
+    const university = req.body.university;
+    const bio = req.body.bio;
+
+    const filter = {_id: req.user.id};
+    const update = {name: name, grade: grade, university: university, bio: bio};
+
+    User.updateOne(filter, update, function (err){
+        if(err){
+            console.log(err);
+        }else{
+            console.log("successfully updated the users profile.");
+            console.log(update);
+            res.redirect("/my-profile");
+        }
+    })
+
+    
 });
 
 
