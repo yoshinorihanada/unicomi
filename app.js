@@ -85,7 +85,17 @@ app.get("/signup", function (req, res) {
 app.get("/my-profile", function (req, res) {
 
     if (req.isAuthenticated()) {
-        res.render("my-profile");
+        User.findById(req.user.id, function (err, foundUser) {
+            if (err) {
+                console.log(err);
+            } else {
+                if (foundUser) {
+                    res.render("my-profile", {MyName: foundUser.name, MyUniversity: foundUser.university, MyGrade: foundUser.grade, MyBio: foundUser.bio});
+                  
+                }
+            }
+        });
+        
     } else {
         res.redirect("/");
     }
