@@ -92,7 +92,7 @@ app.get("/my-profile", function (req, res) {
                 console.log(err);
             } else {
                 if (foundUser) {
-                 res.render("my-profile", {MyName: foundUser.name, MyGrade: foundUser.grade, MyUniversity: foundUser.university, MyBio: foundUser.bio });
+                 res.render("my-profile", {MyArea: foundUser.area,  MyName: foundUser.name, MyGrade: foundUser.grade, MyUniversity: foundUser.university, MyBio: foundUser.bio });
                     
                 }
             }
