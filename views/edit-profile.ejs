@@ -63,9 +63,8 @@
         <div class="userprofileframe">
 
           <div class="changecontent">
-            <form action="/edit-profile" method="POST">
-              <button class="myButton" type="submit"><a style="text-decoration:none;color: inherit; "
-                  href="my-profile">プロフィールを保存</a></button><br>
+            <form action="/edit-profile?_method=PATCH" method="POST">
+              <button class="myButton" type="submit"><a style="text-decoration:none;color: inherit; ">プロフィールを保存</a></button><br>
               <label for="editProfileImage">プロフィール画像:</label>
               <input type="file" id="editProfileImage" name="filename"><br>
 
