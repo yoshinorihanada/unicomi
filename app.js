@@ -40,6 +40,7 @@ const userSchema = new mongoose.Schema({
         contentType: String
     },
     grade: String,
+    area: String,
     university: String,
     bio: String
 });
@@ -139,7 +140,7 @@ app.get("/edit-profile", function (req, res) {
             } else {
                 if (foundUser) {
                     
-                    res.render("edit-profile", {name: foundUser.name, grade: foundUser.grade, university: foundUser.university, bio: foundUser.bio});
+                    res.render("edit-profile", {name: foundUser.name, grade: foundUser.grade, university: foundUser.university, bio: foundUser.bio, area: foundUser.area});
                 }
             }
         });
@@ -212,21 +213,38 @@ app.post("/createacc", function (req, res) {
     const grade = req.body.grade;
     const university = req.body.university;
     const bio = req.body.bio;
+    const area = req.body.area;
 
-    User.findById(req.user.id, function (err, foundUser) {
-        if (err) {
+    const filter = {_id: req.user.id};
+    const update = {name: name, grade: grade, university: university, bio: bio , area: area};
+
+    console.log(req.body)
+
+    // User.findById(req.user.id, function (err, foundUser) {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         if (foundUser) {
+    //             foundUser.name = name;
+    //             // foundUser.profileimg = profileimg;
+    //             foundUser.grade = grade;
+    //             foundUser.university = university;
+    //             foundUser.bio = bio;
+    //             foundUser.area = area;
+    //             foundUser.save(function () {
+    //                 res.redirect("/unicomi");
+    //             });
+    //         }
+    //     }
+    // });
+
+    User.updateOne(filter, {$set: update}, function (err){
+        if(err){
             console.log(err);
-        } else {
-            if (foundUser) {
-                foundUser.name = name;
-                // foundUser.profileimg = profileimg;
-                foundUser.grade = grade;
-                foundUser.university = university;
-                foundUser.bio = bio;
-                foundUser.save(function () {
-                    res.redirect("/unicomi");
-                });
-            }
+        }else{
+            console.log("successfully updated the users profile.");
+            
+            res.redirect("/unicomi");
         }
     });
 
@@ -239,9 +257,10 @@ app.post("/edit-profile", function(req,res){
     const grade = req.body.grade;
     const university = req.body.university;
     const bio = req.body.bio;
+    const area = req.body.area;
 
     const filter = {_id: req.user.id};
-    const update = {name: name, grade: grade, university: university, bio: bio};
+    const update = {name: name, grade: grade, university: university, bio: bio, area: area};
 
     User.updateOne(filter, update, function (err){
         if(err){
@@ -251,7 +270,7 @@ app.post("/edit-profile", function(req,res){
             console.log(update);
             res.redirect("/my-profile");
         }
-    })
+    });
 
     
 });
