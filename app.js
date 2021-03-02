@@ -8,7 +8,9 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
 
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+
+const random = require('mongoose-simple-random');
 
 
 const fs = require('fs');
@@ -49,6 +51,7 @@ const userSchema = new mongoose.Schema({
     university: String,
     bio: String
 });
+userSchema.plugin(random);
 
 userSchema.plugin(passportLocalMongoose);
 
@@ -65,7 +68,7 @@ app.get("/", function (req, res) {
 
 });
 
-app.route("signin")
+app.route("/signin")
     .get(function (req, res) {
         res.render("signin");
     })
@@ -133,7 +136,15 @@ app.get("/logout", function (req, res) {
 
 app.get("/unicomi", function (req, res) {
     if (req.isAuthenticated()) {
-        res.render("unicomi");
+        User.findRandom({}, {},{limit:9},function (err,foundUsers){
+            if(err){
+                console.log(err)
+            } else {
+                if(foundUsers)
+                res.render("unicomi", { users : foundUsers});
+            }
+            console.log(foundUsers)
+        })
     } else {
         res.redirect("/signin");
     }
@@ -210,14 +221,23 @@ app.route("/edit-profile")
 
     });
 
-app.get("/user_profile", function (req, res) {
+app.get("/user-profile/:userId", function (req, res) {
+
+    const requestedUserId = req.params.userId;
     if (req.isAuthenticated()) {
-        res.render("user_profile");
+        User.findOne({_id: requestedUserId},function(err,foundUser){
+            if(err){
+                console.log(err);
+            }else {
+                res.render("user-profile", {MyName: foundUser.name, MyUniversity: foundUser.university, MyArea: foundUser.area, MyGrade:foundUser.grade, MyBio: foundUser.bio});
+            }
+            
+        });
+        
     } else {
         res.redirect("/");
     }
 });
-
 
 
 
