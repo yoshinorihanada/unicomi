@@ -15,7 +15,7 @@
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
   <!-- Custom styles for this template -->
-  <link href="css/user_profile.css" rel="stylesheet">
+  <link href="css/user-profile.css" rel="stylesheet">
 
 
 
@@ -69,10 +69,11 @@
             alt="プロフィール画像">
           <div class="profilecontent">
             
-            <h1>Kaya Hanada</h1>
-            <p>大学名：This container has a top padding of 16 pixels (.pt-3).</p>
-            <p>学年：Try to remove the .pt-3 class to see the difference.</p>
-            <p>自己紹介：Try to remove the .pt-3 class to see the difference.</p>
+            <h1><%= MyName %></h1>
+            <p>大学名：<%= MyUniversity %></p>
+            <p>エリア: <%= MyArea %></p>
+            <p>学年：<%= MyGrade %></p>
+            <p>自己紹介：<%= MyBio %></p>
           </div>
           
           
