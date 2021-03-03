@@ -15,7 +15,7 @@
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
   <!-- Custom styles for this template -->
-  <link href="css/edit-profile.css" rel="stylesheet">
+  <link href="/css/edit-profile.css" rel="stylesheet">
 
 
 
@@ -40,7 +40,7 @@
     <div class="bg-light border-right " id="sidebar-wrapper">
 
       <div class="list-group list-group-flush">
-        <a href="unicomi" class="list-group-item list-group-item-action bg-light">ホーム</a>
+        <a href="unicomi" class="list-group-item list-group-item-action bg-light">プロフィールリスト</a>
         <a href="filtering" class="list-group-item list-group-item-action bg-light">条件検索</a>
         <a href="my-profile" class="list-group-item list-group-item-action bg-light">マイページ</a>
         <a href="/logout" class="list-group-item list-group-item-action bg-light">ログアウト</a>
@@ -69,9 +69,9 @@
               <input type="file" id="editProfileImage" name="filename"><br>
 
               <label for="name-input">名前:</label>
-              <input id="name-input" name="name" type="text" size="15" value="<%= name %> "> <br>
+              <input id="name-input" name="name" type="text" size="15" onchange="this.value = trim(this.value);" value="<%= name %> " > <br>
               <label for="uni-name-input">大学名:</label>
-              <input id="uni-name-input" name="university" type="text" size="20" value="<%= university %> "> <br>
+              <input id="uni-name-input" name="university" type="text" size="20" onchange="this.value = trim(this.value);" value="<%= university %> "> <br>
               <label for="grade-input">学年:</label>
               <select name="grade" 　id="uni-name-input">
                 <option value="1" <%=grade==="1" ? 'selected' : '' %> >1年生</option>
@@ -134,7 +134,7 @@
               </select><br>
 
               <label for="bio-input">自己紹介:</label>
-              <textarea name="bio" id="bio-input" rows="5" cols="30" type="text"><%= bio %> 
+              <textarea name="bio" id="bio-input" rows="5" cols="30" type="text" onchange="this.value = trim(this.value);"><%= bio %> 
               </textarea><br>
             </form>
 
@@ -169,10 +169,9 @@
         x.classList.toggle("change");
         $("#wrapper").toggleClass("toggled");
       }
-
-      $("#editProfileImage").click(function (e) {
-        $("#imageUpload").click();
-      });
+      
+      function trim(myString) { return myString.replace(/^\s+|\s+$/g, ''); }
+    
 
 
 

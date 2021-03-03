@@ -1,8 +1,4 @@
-/*!
- * Start Bootstrap - Shop Homepage (https://startbootstrap.com/template/shop-homepage)
- * Copyright 2013-2020 Start Bootstrap
- * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
- */
+
  body {
     padding-top: 56px;
     background-color:#FFFAF0;
@@ -145,6 +141,31 @@
 .myButton:active {
 	position:relative;
 	top:1px;
+}
+
+.backbutton {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+  margin-right: 80%;
+  margin-top: 10px;
+  border: solid 1px;
+  border-color: black;
+}
+
+.backbutton:hover {
+  background-color:#66CDAA;
+  color: black;
+}
+
+.previous {
+  background-color: #ddd;
+  color: black;
+}
+
+
+.round {
+  border-radius: 50%;
 }
 
 
