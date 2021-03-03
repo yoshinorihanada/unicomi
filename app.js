@@ -12,6 +12,8 @@ const methodOverride = require('method-override');
 
 const random = require('mongoose-simple-random');
 
+const querystring = require('querystring');       
+
 
 const fs = require('fs');
 var path = require('path');
@@ -110,43 +112,39 @@ app.route("/signup")
     });
 
 
-app.get("/my-profile", function (req, res) {
 
-    if (req.isAuthenticated()) {
-        User.findById(req.user.id, function (err, foundUser) {
-            if (err) {
-                console.log(err);
-            } else {
-                if (foundUser) {
-                    res.render("my-profile", { MyArea: foundUser.area, MyName: foundUser.name, MyGrade: foundUser.grade, MyUniversity: foundUser.university, MyBio: foundUser.bio });
-
-                }
-            }
-        });
-
-    } else {
-        res.redirect("/");
-    }
-});
 
 app.get("/logout", function (req, res) {
     req.logout();
     res.redirect('/');
 });
+app.route('/unicomi')
+    .get( function (req, res) {
+        
+        if (req.isAuthenticated()) {
+            User.findRandom(req.query, {},{limit:6},function (err,foundUsers){
+                if(err){
+                    console.log(err)
+                } else {
+                    if(foundUsers){
+                        res.render("unicomi", { users : foundUsers, query: "?" + querystring.stringify(req.query)});
+                    } else{
+                        res.redirect("/no-profile-found");
+                    }
+                    
+                }
+                // console.log(foundUsers)
+            })
+        } else {
+            res.redirect("/signin");
+        }
+    });
 
-app.get("/unicomi", function (req, res) {
+app.get("/no-profile-found", function(req,res){
     if (req.isAuthenticated()) {
-        User.findRandom({}, {},{limit:9},function (err,foundUsers){
-            if(err){
-                console.log(err)
-            } else {
-                if(foundUsers)
-                res.render("unicomi", { users : foundUsers});
-            }
-            console.log(foundUsers)
-        })
+        res.render("no-profile");
     } else {
-        res.redirect("/signin");
+        res.redirect("/");
     }
 });
 
@@ -177,13 +175,21 @@ app.route("/createacc")
 
     });
 
-app.get("/filtering", function (req, res) {
-    if (req.isAuthenticated()) {
-        res.render("filtering");
-    } else {
-        res.redirect("/");
-    }
-})
+app.route("/filtering")
+    .get(function (req, res) {
+        if (req.isAuthenticated()) {
+            res.render("filtering");
+        } else {
+            res.redirect("/");
+        }
+    })
+    .post(function(req,res){
+        const filter = {university: req.body.university, area: req.body.area, grade: req.body.grade}
+        const query = querystring.stringify(filter);
+        res.redirect('/unicomi?' + query);
+        
+    });
+    
 
 app.route("/edit-profile")
     .get(function (req, res) {
@@ -239,40 +245,24 @@ app.get("/user-profile/:userId", function (req, res) {
     }
 });
 
+app.get("/my-profile", function (req, res) {
 
+    if (req.isAuthenticated()) {
+        User.findById(req.user.id, function (err, foundUser) {
+            if (err) {
+                console.log(err);
+            } else {
+                if (foundUser) {
+                    res.render("my-profile", { MyArea: foundUser.area, MyName: foundUser.name, MyGrade: foundUser.grade, MyUniversity: foundUser.university, MyBio: foundUser.bio });
 
+                }
+            }
+        });
 
-
-
-
-
-// app.post("/edit-profile", function(req,res){
-//     console.log(req.body)
-//     const name = req.body.name;
-//     const grade = req.body.grade;
-//     const university = req.body.university;
-//     const bio = req.body.bio;
-//     const area = req.body.area;
-
-//     const filter = {_id: req.user.id};
-//     const update = {name: name, grade: grade, university: university, bio: bio, area: area};
-
-//     User.updateOne(filter, {$set: update}, function (err){
-//         if(err){
-//             console.log(err);
-//         }else{
-//             console.log("successfully updated the users profile.");
-//             console.log(update);
-//             res.redirect("/my-profile");
-//         }
-//     });
-
-
-// });
-
-
-
-
+    } else {
+        res.redirect("/");
+    }
+});
 
 app.listen(process.env.PORT || 3000, function () {
     console.log("Server started on port 3000");

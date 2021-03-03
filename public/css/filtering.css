@@ -91,38 +91,42 @@
 }
 
     
+/* 以下条件検索スタイル */
+
+label{
+  font-size: 15px;
 }
-@use postcss-preset-env {
-    stage: 0
-  }
+
+button:hover {
+  opacity:1;
+}
+
+.formContainer {
+  padding: 16px;
   
-  .joukencontainer {
-    min-height: 100vh;
-    display: grid;
-    align-items: center;
-    font-style:oblique;
-    font-size: 23px;
-  }
+}
+.formContainer p{
+  font-size: 20px;
+}
+.form-group{
+  margin: 15px auto;
+}
+.content-container{
+
+  width: 50%;
+  margin: 25px auto;
+   
+}
+
+.submit-btn{
+ margin: 25px auto 15px;
+ opacity: 0.9;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+
   
-  form {
-    display: flex;
-    flex-wrap: wrap;
-    margin: auto;    
-  }
   
-  input {
-    border: none;
-    background: hsl(0 0% 93%);
-    border-radius: .25rem;
-    padding: 5px;
-    width: 65%;
-    
-  }
-  .submit{
-      width: 70%;
-      margin: auto;
-  }
-  label{
-      padding: 5%;
-  }
   

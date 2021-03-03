@@ -68,38 +68,18 @@
 
       </script>
 
-      <div class="button-list">
-        <a href="unicomi<%= query %>"><button class="myButton">リスト更新</button></a>
-        <a href="filtering"><button class="myButton">条件検索</button></a>
-      </div>
-      
-
 
       <div class="container-fluid">
         
     
                 
         <div class="fontawesome row" >
-          <% users.forEach(function(user) { %>
-            <div class="card col-lg-3">
-              <div class="card-header">
-                  <img src="https://fineboys-online.jp/thegear/content/theme/media/kiyoharakaya_1.jpg" alt="Profile Image" class="profile-img">
-              </div>
-              <div class="card-body">
-                  <p class="username"><%= user.name %></p>
-                  <p class="university"><%= user.university %></p>
-                  <p class="grade"><%= user.grade %></p>
-                  
-              </div>
-              <div class="card-footer">
-                <a href="user-profile/<%= user._id %>"><button class="myButton">プロフィールを見る</button></a>
-              </div>
-            </div>
-          <% }); %> 
           
-          
-          
-
+          <p>プロフィールが見つかりませんでした </p>
+          <div class="button-list">
+            
+            <a href="filtering"><button class="myButton">戻る</button></a>
+          </div>
           
 
         </div>
