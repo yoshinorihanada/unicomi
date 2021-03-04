@@ -14,9 +14,12 @@ const random = require('mongoose-simple-random');
 
 const querystring = require('querystring');       
 
+const multer = require('multer');
+const upload = multer({dest: 'uploads/'})
 
 const fs = require('fs');
 var path = require('path');
+
 
 
 const app = express();
@@ -53,6 +56,9 @@ const userSchema = new mongoose.Schema({
     university: String,
     bio: String
 });
+
+//defining the path of the image to upload
+
 userSchema.plugin(random);
 
 userSchema.plugin(passportLocalMongoose);
@@ -122,7 +128,7 @@ app.route('/unicomi')
     .get( function (req, res) {
         
         if (req.isAuthenticated()) {
-            User.findRandom(req.query, {},{limit:6},function (err,foundUsers){
+            User.findRandom(req.query, {},{limit:8},function (err,foundUsers){
                 if(err){
                     console.log(err)
                 } else {
@@ -185,6 +191,14 @@ app.route("/filtering")
     })
     .post(function(req,res){
         const filter = {university: req.body.university, area: req.body.area, grade: req.body.grade}
+        
+        if(filter.university === '') delete filter.university;
+        delete filter.university;
+
+        if(filter.area === 'none') delete filter.area;
+
+        if(filter.grade === 'none') delete filter.grade;
+
         const query = querystring.stringify(filter);
         res.redirect('/unicomi?' + query);
         
