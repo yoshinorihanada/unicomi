@@ -65,8 +65,8 @@
           <div class="changecontent">
             <form action="/edit-profile?_method=PATCH" method="POST">
               <button class="myButton" type="submit"><a style="text-decoration:none;color: inherit; ">プロフィールを保存</a></button><br>
-              <label for="editProfileImage">プロフィール画像:</label>
-              <input type="file" id="editProfileImage" name="filename"><br>
+              <!-- <label for="editProfileImage">プロフィール画像:</label>
+              <input type="file" id="editProfileImage" name="filename"><br> -->
 
               <label for="name-input">名前:</label>
               <input id="name-input" name="name" type="text" size="15" onchange="this.value = trim(this.value);" value="<%= name %> " > <br>

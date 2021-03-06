@@ -6,21 +6,26 @@ const ejs = require("ejs");
 const mongoose = require("mongoose");
 const session = require('express-session');
 const passport = require('passport');
-const passportLocalMongoose = require('passport-local-mongoose');
-
+//for deploying patch request
 const methodOverride = require('method-override');
-
-const random = require('mongoose-simple-random');
-
+//for using query in get request
 const querystring = require('querystring');       
-
+//for uploading image
 const multer = require('multer');
-const upload = multer({dest: 'uploads/'})
-
+const helpers = require('./helpers');
+const path = require('path');
 const fs = require('fs');
-var path = require('path');
 
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'public/files');
+    },
 
+    // By default, multer removes file extensions so let's add them back
+    filename: function(req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
 
 const app = express();
 
@@ -42,28 +47,7 @@ app.use(passport.session());
 mongoose.connect("mongodb://localhost:27017/unicomi-user", { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set("useCreateIndex", true);
 
-const userSchema = new mongoose.Schema({
-    email: String,
-    password: String,
-    name: String,
-    profileimg:
-    {
-        data: Buffer,
-        contentType: String
-    },
-    grade: String,
-    area: String,
-    university: String,
-    bio: String
-});
-
-//defining the path of the image to upload
-
-userSchema.plugin(random);
-
-userSchema.plugin(passportLocalMongoose);
-
-const User = new mongoose.model("User", userSchema);
+const User = require("./model/userSchema")
 
 passport.use(User.createStrategy());
 
@@ -156,13 +140,15 @@ app.get("/no-profile-found", function(req,res){
 
 app.route("/createacc")
     .get(function (req, res) {
+        
         if (req.isAuthenticated()) {
             res.render("createacc");
         } else {
             res.redirect("/");
         }
     })
-    .patch(function (req, res) {
+    .post(function (req, res) {
+        // let upload = multer({ storage: storage, fileFilter: helpers.imageFilter }).single('profile_pic');
 
         const filter = { _id: req.user.id };
 
@@ -193,7 +179,6 @@ app.route("/filtering")
         const filter = {university: req.body.university, area: req.body.area, grade: req.body.grade}
         
         if(filter.university === '') delete filter.university;
-        delete filter.university;
 
         if(filter.area === 'none') delete filter.area;
 
@@ -204,6 +189,39 @@ app.route("/filtering")
         
     });
     
+app.route("/edit-profile-pic")
+    .get(function(req,res){
+        if (req.isAuthenticated()) {
+            res.render("edit-profile-pic");
+        } else {
+            res.redirect("/");
+        }
+    })
+    .patch(function(req,res){
+        let upload = multer({ storage: storage, fileFilter: helpers.imageFilter }).single('profile_pic');
+
+        upload(req, res, function(err) {
+            // req.file contains information of uploaded file
+            // req.body contains information of text fields, if there were any
+    
+            if (req.fileValidationError) {
+                return res.send(req.fileValidationError);
+            }
+            else if (!req.file) {
+                return res.send('Please select an image to upload');
+            }
+            else if (err instanceof multer.MulterError) {
+                return res.send(err);
+            }
+            else if (err) {
+                return res.send(err);
+            }
+            
+            console.log(req.file.path)
+            // Display uploaded image for user validation
+            res.send(`You have uploaded this image: <hr/><img src="${req.file.path}" width="500"><hr /><a href="./edit-profile-pic">Upload another image</a>`);
+        });
+    });
 
 app.route("/edit-profile")
     .get(function (req, res) {
@@ -225,6 +243,7 @@ app.route("/edit-profile")
     })
     .patch(function (req, res) {
         console.log(req.body);
+        
 
         const filter = { _id: req.user.id };
 
