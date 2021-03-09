@@ -44,7 +44,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://localhost:27017/unicomi-user", { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect("mongodb://localhost:27017/unicomi-user", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://admin-yoshinori:test1234@cluster0.yv5io.mongodb.net/unicomi-user", { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => {
+    console.log("MongoDB Connected…")
+  }).catch(err => console.log(err));
+
 mongoose.set("useCreateIndex", true);
 
 const User = require("./model/userSchema")
@@ -154,7 +159,7 @@ app.route("/createacc")
 
         console.log(req.body)
 
-        User.updateOne(filter, { $set: req.body }, function (err) {
+        User.updateOne(filter, { $set: {name: req.body.name, bio: req.body.bio, university: req.body.university, area: req.body.area, grade: req.body.grade, profileimg: "user_icon.png"} }, function (err) {
             if (err) {
                 console.log(err);
             } else {
@@ -217,9 +222,19 @@ app.route("/edit-profile-pic")
                 return res.send(err);
             }
             
-            console.log(req.file.path)
-            // Display uploaded image for user validation
-            res.send(`You have uploaded this image: <hr/><img src="${req.file.path}" width="500"><hr /><a href="./edit-profile-pic">Upload another image</a>`);
+            console.log(req.file)
+            const filter = { _id: req.user.id };
+
+            User.updateOne(filter, { $set: {profileimg: req.file.filename}}, function (err) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("successfully updated the users profile picture.");
+
+                    res.redirect("/my-profile");
+                }
+            });
+            
         });
     });
 
@@ -268,7 +283,8 @@ app.get("/user-profile/:userId", function (req, res) {
             if(err){
                 console.log(err);
             }else {
-                res.render("user-profile", {MyName: foundUser.name, MyUniversity: foundUser.university, MyArea: foundUser.area, MyGrade:foundUser.grade, MyBio: foundUser.bio});
+                console.log(foundUser.profileimg);
+                res.render("user-profile", {MyName: foundUser.name, MyUniversity: foundUser.university, MyArea: foundUser.area, MyGrade:foundUser.grade, MyBio: foundUser.bio, MyImage: foundUser.profileimg});
             }
             
         });
@@ -286,7 +302,8 @@ app.get("/my-profile", function (req, res) {
                 console.log(err);
             } else {
                 if (foundUser) {
-                    res.render("my-profile", { MyArea: foundUser.area, MyName: foundUser.name, MyGrade: foundUser.grade, MyUniversity: foundUser.university, MyBio: foundUser.bio });
+                    
+                    res.render("my-profile", { MyArea: foundUser.area, MyName: foundUser.name, MyGrade: foundUser.grade, MyUniversity: foundUser.university, MyBio: foundUser.bio, MyImage: foundUser.profileimg });
 
                 }
             }
