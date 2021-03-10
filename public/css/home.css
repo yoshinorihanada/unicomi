@@ -13,4 +13,13 @@ body {
     font-size: 2rem;
 
   }
+  h1{
+    color:#66CDAA;
+  }
   
+  .first{
+    background-color: #66CDAA;
+  }
+  .first:hover{
+    background-color: #66CDAA;
+  }
