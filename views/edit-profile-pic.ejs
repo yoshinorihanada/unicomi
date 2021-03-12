@@ -64,12 +64,42 @@
 
           <div class="changecontent">
             <form action="/edit-profile-pic?_method=PATCH" method="POST" enctype="multipart/form-data">
-              <button class="myButton" type="submit"><a style="text-decoration:none;color: inherit; ">プロフィール画像を保存</a></button><br>
+              <button class="myButton" type="submit"><a
+                  style="text-decoration:none;color: inherit; ">プロフィール画像を保存</a></button><br>
               <label for="editProfileImage">プロフィール画像:</label>
               <input type="file" id="editProfileImage" name="profile_pic"><br>
 
-              
+
             </form>
+            <script>
+              (() => {
+                document.getElementById("editProfileImage").onchange = () => {
+                  const files = document.getElementById('editProfileImage').files;
+                  const file = files[0];
+                  if (file == null) {
+                    return alert('No file selected.');
+                  }
+                  getSignedRequest(file);
+                };
+              })();
+
+              function getSignedRequest(file){
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+                xhr.onreadystatechange = () => {
+                  if(xhr.readyState === 4){
+                    if(xhr.status === 200){
+                      const response = JSON.parse(xhr.responseText);
+                      uploadFile(file, response.signedRequest, response.url);
+                    }
+                    else{
+                      alert('Could not get signed URL.');
+                    }
+                  }
+                };
+                xhr.send();
+              }
+            </script>
 
           </div>
 
@@ -102,9 +132,9 @@
         x.classList.toggle("change");
         $("#wrapper").toggleClass("toggled");
       }
-      
+
       function trim(myString) { return myString.replace(/^\s+|\s+$/g, ''); }
-    
+
 
 
 
