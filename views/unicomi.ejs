@@ -14,7 +14,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
   <!-- Custom styles for this template -->
-  <link href="/css/unicomi.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
 <!-- fontawesome -->
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -27,27 +27,12 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg topbar fixed-top ">
-    <div class="container">
-      <a class="navbar-brand topname" >UNI-COMI</a>
-      <button class="navbar-toggler topname" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon topname"></span>
-      </button>
-    </div>
-  </nav>
+  <%- include('partials/navbar') %> 
 
   <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
-    <div class="bg-light border-right " id="sidebar-wrapper">
-      
-      <div class="list-group list-group-flush">
-        <a href="/unicomi" class="list-group-item list-group-item-action bg-light">プロフィールリスト</a>
-        <a href="/filtering" class="list-group-item list-group-item-action bg-light">条件検索</a>
-        <a href="/my-profile" class="list-group-item list-group-item-action bg-light">マイページ</a>
-        <a href="/logout" class="list-group-item list-group-item-action bg-light">ログアウト</a>
-      </div>
-    </div>
+    <%- include('partials/sidebar') %> 
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
@@ -69,8 +54,8 @@
       </script>
 
       <div class="button-list">
-        <a href="unicomi<%= query %>"><button class="myButton">リスト更新</button></a>
-        <a href="filtering"><button class="myButton">条件検索</button></a>
+        <a href="unicomi<%= query %>"><button class="profileButton">リスト更新</button></a>
+        <a href="filtering"><button class="profileButton">条件検索</button></a>
       </div>
       
 
@@ -93,7 +78,7 @@
                   
               </div>
               <div class="card-footer">
-                <a href="user-profile/<%= user._id %>"><button class="myButton">プロフィールを見る</button></a>
+                <a href="user-profile/<%= user._id %>"><button class="profileButton">プロフィールを見る</button></a>
               </div>
             </div>
           <% }); %> 

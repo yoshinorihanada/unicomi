@@ -15,7 +15,7 @@
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
   <!-- Custom styles for this template -->
-  <link href="/css/my-profile.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
 
 
 
@@ -24,28 +24,12 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg topbar fixed-top ">
-    <div class="container">
-      <a class="navbar-brand topname">UNI-COMI</a>
-      <button class="navbar-toggler topname" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon topname"></span>
-      </button>
-    </div>
-  </nav>
+  <%- include('partials/navbar') %> 
 
   <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
-    <div class="bg-light border-right " id="sidebar-wrapper">
-
-      <div class="list-group list-group-flush">
-        <a href="/unicomi" class="list-group-item list-group-item-action bg-light">プロフィールリスト</a>
-        <a href="/filtering" class="list-group-item list-group-item-action bg-light">条件検索</a>
-        <a href="/my-profile" class="list-group-item list-group-item-action bg-light">マイページ</a>
-        <a href="/logout" class="list-group-item list-group-item-action bg-light">ログアウト</a>
-      </div>
-    </div>
+    <%- include('partials/sidebar') %> 
 
 
 
