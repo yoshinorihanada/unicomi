@@ -188,8 +188,9 @@
 }
 
 .button-list{
-  margin: 0 auto;
-  width: 22%;
+  
+  margin-left: 10px;
+  width: 60%;
 }
 
 .profileButton {
